@@ -30,7 +30,7 @@ int main()
     point1.x =1;
     point1.y =2;
     
-    int(Point::*ptr)() = &Point::sum; //関数の指定
+    int(Point::*ptr)() = &Point::sum; //関数の指定 //左は関数ポインタなので（）がある
     int result = (point1.*ptr)(); //2回括弧を書く
     
     std::cout << result << std::endl; //ポインター関数での呼び出し
