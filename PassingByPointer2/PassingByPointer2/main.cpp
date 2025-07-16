@@ -18,6 +18,5 @@ int main()
     std::cout << num;
     
     
-    
     return 0;
 }
