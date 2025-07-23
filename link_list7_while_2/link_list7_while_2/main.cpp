@@ -58,8 +58,39 @@
 
 #include <iostream>
 
+struct Node
+{
+    int information;
+    Node* next;
+    
+};
+
 int main()
 {
+    Node* head = nullptr;
+    head = new Node;
+    
+    head->next = new Node;
+    head->next->information =1;
+    
+    head->next->next = new Node;
+    head->next->next-> information =2;
+    
+    head->next->next->next = nullptr;
+    
+    
+    
+    //出力　headを起点に動かすポインタを作る
+    Node* currentNode = head;
+    
+    // currentNode = currentNode->nextにすることでノードを移動させる
+    while(currentNode !=nullptr)
+    {
+        std::cout << currentNode -> information << std::endl;
+        currentNode = currentNode->next;
+    }
+    
+    
 
     return 0;
 }
