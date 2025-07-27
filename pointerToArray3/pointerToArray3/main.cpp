@@ -58,7 +58,6 @@ void printArr3(int (&arr)[5])
 {
     for(int i = 0; i< 5; i++ )
     {
-        
         //std::cout << *p << std::endl;
         //p[i] ≡ *(p + i)
         
@@ -81,6 +80,7 @@ void printArr4( int arr[], int size)
 template <size_t N>
 void printArr5(int (&arr)[N])
 {
+    //// arr はサイズ N の int 配列への **参照**
     std::cout << "size = " << N << std::endl;
     for (size_t i = 0; i < N; ++i)
     std::cout << arr[i] << std::endl;
@@ -91,6 +91,9 @@ void printArr5(int (&arr)[N])
 int main()
 {
     int arr[5]  = {1,2,3,4,5};
+    
+    
+    
     //配列そのものにアクセスすることを意図するとする
     // arrや＆arr[0]は誤り
     
@@ -109,10 +112,31 @@ int main()
     printArr3(arr);
     
     
-    printArr4(arr, 5);
+    printArr4(arr, 5); //printArr4(&arr[0], 5);と同じ意味
+                       //arr → int*の過程でdecayを起こし、サイズを失う。
+    
+    printArr4(&arr[0], 5); //これと同じ意味です
+    
+    //printArr4( int arr[], int size)
+    // int arr[] = arr;
+    // int size = 5;
     
     
+    
+    
+    //int (&arr)[N] = arr;
     printArr5(arr);
+    //printArr5(&arr[0]); これは誤りだ
+    //int (&arr)[N] = arr; 配列の参照
+    
+    /*
+     | 渡す値       | 型        | `printArr5` の引数に合うか？ |
+     | --------- | -------- | -------------------- |
+     | `arr`     | `int p[5]` | はい（配列参照にマッチ）         |
+     | `&arr[0]` | `int* p`   | いいえ（配列参照ではない）        |
+
+     */
+    
     
     
     
