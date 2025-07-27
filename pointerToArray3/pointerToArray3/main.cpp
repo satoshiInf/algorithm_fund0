@@ -1,5 +1,4 @@
-//
-//
+
 /*
  
  配列を使った関数の扱いを今一度チェック
@@ -8,8 +7,14 @@
  C++では、配列は関数に渡すときに自動的にポインタに変換されます（デカイ）：
  arr → &arr[0] → int*
  この変換のことを「配列からポインタへの暗黙変換（decay）」といいます。
+
+ 歴史的に C 言語では、「関数に配列そのものをコピーして渡す」ことが重すぎるから、それを禁止しました。代わりに：
+ 配列を関数に渡すと、先頭要素のポインタに自動的に変換される（退化 / decay）
+ という仕様になった。引数がarr[]が先頭のアドレスを指す
  
 
+ 
+ 
  void func(int* p)          ポインタ（arr など）
  void func(int arr[])       同上（int*と同じ）
  void func(int (&arr)[5])   5個のintからなる配列の参照
@@ -70,13 +75,13 @@ void printArr4( int arr[], int size)
 {
     for(int i = 0; i< size; i++ )
     {
-        std::cout <<""<< std::endl;
+        std::cout << arr[i]<< std::endl;
     }
     
 }
 
 
-//インデックス数を管理して動かす
+//インデックス数を管理して動かす, インデックス数の5をそのまま使って配列を回すのは危ない
 template <size_t N>
 void printArr5(int (&arr)[N])
 {
@@ -91,7 +96,6 @@ void printArr5(int (&arr)[N])
 int main()
 {
     int arr[5]  = {1,2,3,4,5};
-    
     
     
     //配列そのものにアクセスすることを意図するとする
@@ -124,8 +128,10 @@ int main()
     
     
     
+    
+    
+     printArr5(arr);// int* p = arr ≡ &arr[0]
     //int (&arr)[N] = arr;
-    printArr5(arr);
     //printArr5(&arr[0]); これは誤りだ
     //int (&arr)[N] = arr; 配列の参照
     
