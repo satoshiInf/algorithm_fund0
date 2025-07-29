@@ -14,15 +14,36 @@
  template <typename T, size_t N>
  double averageArr(const T (&arr)[N]);
 
- 
- 
- 
 */
 
 #include <iostream>
 
+template <typename T, size_t N>
+T findMax(const T (&p)[N])
+{
+    T maxValue = p[0];
+    for(int i = 0; i <N ; i++)
+    {
+        if(maxValue < p[i])
+            maxValue = p[i];
+    }
+    
+    //std::cout << maxValue <<std:: endl;
+    
+    return maxValue;
+}
+
+
 int main()
 {
+    
+    int a[3] = {4, 8, 2};
+    double d[3] = {1.5, 9.9, 4.4};
+    
+    std::cout<<findMax(a) << std::endl;
+    std::cout<<findMax(d) << std::endl;
+   
+    
     
     return 0;
 }
