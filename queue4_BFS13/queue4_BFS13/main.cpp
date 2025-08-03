@@ -129,7 +129,7 @@ int main()
         
     std::cout << "\n--- 経路復元 ---\n";
     for (int goal = 0; goal < n; goal++)
-        {
+    {
             if (distance[goal] == -1 || goal == 0)
                 continue; // 未到達 or 自分自身はスキップ　 //次の値でまたループを回す
 
